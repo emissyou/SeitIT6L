@@ -39,7 +39,7 @@
         <div class="text-sm font-semibold text-slate-500">Last Shift Summary</div>
         <div class="mt-6 space-y-3 text-sm text-slate-700">
             @if ($lastShift)
-                <div><span class="font-semibold">Date:</span> {{ \Illuminate\Support\Carbon::parse($lastShift->sales_date)->format('F j, Y') }}</div>
+                <div><span class="font-semibold">Dphpate:</span> {{ \Illuminate\Support\Carbon::parse($lastShift->sales_date)->format('F j, Y') }}</div>
                 <div><span class="font-semibold">Gross Sales:</span> ₱{{ number_format($lastShift->gross_sales, 2) }}</div>
                 <div><span class="font-semibold">Net Sales:</span> ₱{{ number_format($lastShift->net_sales, 2) }}</div>
                 <div><span class="font-semibold">Status:</span> {{ ucfirst($lastShift->status) }}</div>
