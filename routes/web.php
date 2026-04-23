@@ -23,6 +23,7 @@ Route::patch('/shift/{shift}/archive', [ShiftController::class, 'archive'])->nam
 Route::patch('/shift/{shift}/restore', [ShiftController::class, 'restore'])->name('shift.restore');
 Route::delete('/shift/{shift}', [ShiftController::class, 'destroy'])->name('shift.destroy');
 Route::get('/wetstock', [WetstockController::class, 'index'])->name('wetstock');
+Route::post('/wetstock/delivery', [WetstockController::class, 'store'])->name('wetstock.delivery.store');
 Route::get('/reports', [ReportController::class, 'index'])->name('reports');
 Route::get('/financials', [FinancialController::class, 'index'])->name('financials');
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
