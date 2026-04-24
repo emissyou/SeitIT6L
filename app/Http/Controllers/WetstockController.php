@@ -66,13 +66,11 @@ class WetstockController extends Controller
             ->take(12)
             ->get();
 
-        $suppliers = Supplier::orderBy('company_name')->get();
         $fuels = Fuel::orderBy('name')->get();
 
         return view('wetstock', [
             'stockSummary' => $stockSummary,
             'deliveries' => $deliveries,
-            'suppliers' => $suppliers,
             'fuels' => $fuels,
         ]);
     }
@@ -83,9 +81,15 @@ class WetstockController extends Controller
 
         $totalCost = round($data['quantity'] * $data['unit_cost'], 2);
 
-        DB::transaction(function () use ($data, $totalCost) {
+        $supplier = Supplier::firstOrCreate([
+            'company_name' => $data['supplier_company'],
+        ], [
+            'contact_name' => $data['supplier_name'],
+        ]);
+
+        DB::transaction(function () use ($data, $totalCost, $supplier) {
             $delivery = Delivery::create([
-                'supplier_id' => $data['supplier_id'],
+                'supplier_id' => $supplier->id,
                 'driver' => $data['driver'],
                 'plate_number' => $data['plate_number'] ?? null,
                 'delivery_date' => $data['delivery_date'],

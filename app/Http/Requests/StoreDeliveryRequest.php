@@ -23,7 +23,8 @@ class StoreDeliveryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'supplier_id' => ['required', 'integer', 'exists:suppliers,id'],
+            'supplier_company' => ['required', 'string', 'max:255'],
+            'supplier_name' => ['required', 'string', 'max:255'],
             'driver' => ['required', 'string', 'max:255'],
             'plate_number' => ['nullable', 'string', 'max:255'],
             'delivery_date' => ['required', 'date'],
